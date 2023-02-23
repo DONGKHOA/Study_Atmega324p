@@ -1,0 +1,100 @@
+//Direct
+LDI R16, 0
+STS 0X100, R16
+STS 0X101, R16
+STS 0X102, R16
+STS 0X103, R16
+STS 0X104, R16
+
+
+// Indirect
+
+LDI R16,0 
+LDI YL, 0X00
+LDI YH, 0X01
+ST Y+, R16
+ST Y+, R16
+ST Y+, R16
+ST Y+, R16
+ST Y+, R16
+
+
+LDI R16, 0
+LDI ZL, 0X05
+LDI ZH, 0X10
+LDI -Z, R16
+LDI -Z, R16
+LDI -Z, R16
+LDI -Z, R16
+LDI -Z, R16
+
+	LDI R16, 0
+	LDI R17, 5
+	LDI YL, 0X00
+	LDI YH, 0X01
+LP: 	ST Y+, R16
+	DEC R17
+	BRNE LP
+	
+	
+// nhập dữ liệu từ Port B và xuất dữ liệu ra POrt D
+
+LDI R16, 0
+OUT DDRB, R16
+LDI R16, 0XFF
+OUT PORTB, R16
+OUT DDRD, R16
+IN R0, PINB
+OUT PORTD, R0
+
+// đọc byte thấp của ô nhớ có địa chỉ &0001 về R0
+
+LDI ZH, 0X00
+LDI ZL, 0X02
+LPM
+Z
+
+LDI ZH, HIGH(0X0002)
+LDI ZL, LOW(0X0002)
+LPM
+
+
+LDI ZH, 0X02
+LDI ZL, 0X00
+LPM R16, Z+
+LPM R17, Z
+
+
+// Đoc byte thấp và byte cao
+
+	LDI ZH, HIGH($0100<<1)
+	LDI ZL, HIGH($0100<<1)
+	
+	
+	LDI ZH, HIGH($0100<<1|1)
+	LDI ZL, HIGH($0100<<1|1)cd
+	
+
+// Bộ nhớ Flash chứa các dữ liệu cố định như chuỗi ký tự hay bảng tham chiếu 
+
+.ORG 0X100			// Địa chỉ là word
+.DB 0, 1, 4, 9, 25 		// 0 được cất là byte thấp của 0x100, 1 được cất vào byte cao của 0x100, tiếp tục địa chỉ được tăng lên
+.DB 36, 49, 64, 81
+
+
+// Viết chương trình tính bình phương giá tri nhập từ Port A (chỉ có giá trị 0..9) và xuất ra Port C
+
+.ORG 0X100
+.DB 0, 1, 4, 9, 25
+.DB 36, 49, 64, 81
+
+LDI ZH, HIGH($0100<<1)
+LDI ZL, HIGH($0100<<1)
+
+IN R16, PINA
+ADD ZL, R16
+LPM
+OUT PORTC, R0
+
+
+

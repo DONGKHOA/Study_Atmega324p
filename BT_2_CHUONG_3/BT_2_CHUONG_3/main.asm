@@ -1,0 +1,25 @@
+;
+; BT_2_CHUONG_3.asm
+;
+; Created: 2/13/2023 9:41:44 AM
+; Author : thanh
+;
+
+
+; Replace with your application code
+LDI R16,0
+OUT DDRA, R16
+LDI R16, 0XFF
+OUT PORTA, R16
+
+LDI R16,0
+OUT DDRB, R16
+LDI R16, 0XFF
+OUT PORTB, R16
+
+IN R16, PINA
+IN R17, PINB
+MUL R16, R17
+
+STS $200, R0
+STS $201, R1

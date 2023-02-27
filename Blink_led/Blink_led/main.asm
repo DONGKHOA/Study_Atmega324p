@@ -1,0 +1,37 @@
+;
+; Blink_led.asm
+;
+; Created: 2/24/2023 7:57:36 PM
+; Author : thanh
+;
+
+
+; Replace with your application code
+;.ORG 0X00
+LDI R16, 0X01
+OUT DDRC, R16
+LOOP: LDI R17, 0X01
+OUT PORTC, R17
+CALL DELAY_1S
+LDI R17, 0X00
+OUT PORTC, R17
+CALL DELAY_1S
+RJMP LOOP
+
+
+
+
+DELAY_1S:
+LDI R16, 25
+LOOP3:	LDI R17, 100
+LOOP2:	LDI R18, 100
+LOOP1:
+		NOP
+		DEC R18
+	BRNE LOOP1
+	DEC R17
+	BRNE LOOP2
+	DEC R16
+	BRNE LOOP3
+
+	RET

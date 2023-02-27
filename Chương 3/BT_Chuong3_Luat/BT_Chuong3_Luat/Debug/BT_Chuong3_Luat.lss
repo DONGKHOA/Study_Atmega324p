@@ -1,0 +1,7 @@
+
+AVRASM ver. 2.2.8  D:\AVR\BT_Chuong3_Luat\BT_Chuong3_Luat\main.asm Sat Feb 25 16:27:21 2023
+
+[builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324Pdef.inc'
+D:\AVR\BT_Chuong3_Luat\BT_Chuong3_Luat\main.asm(82): error: Duplicate label: 'LOOP'
+D:\AVR\BT_Chuong3_Luat\BT_Chuong3_Luat\main.asm(92): error: Illegal re-use of instruction 'st' as label
+D:\AVR\BT_Chuong3_Luat\BT_Chuong3_Luat\main.asm(104): error: Duplicate label: 'LOOP'

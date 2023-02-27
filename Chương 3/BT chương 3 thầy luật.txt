@@ -20,20 +20,22 @@ OUT DDRA, R16
 
 ; SOLUTION
 
-IN R16, PINB	; R16-> DATA PINB
-IN R17, PINC	; R17-> DATA PINC
+LOOP:
 
-CP R16, R17
-BREQ P_A1
-BRCC P_A0
-SBI PORTA, 2
-HERE: RJMP HERE
+	IN R16, PINB	; R16-> DATA PINB
+	IN R17, PINC	; R17-> DATA PINC
+
+	CP R16, R17
+	BREQ P_A1
+	BRCC P_A0
+	SBI PORTA, 2
+		RJMP LOOP
 
 P_A1: SBI PORTA, 1
-	RJMP HERE
+	RJMP LOOP
 
 P_A0: SBI PORTA, 0
-	RJMP HERE
+	RJMP LOOP
 
 	Số có dấu:
 .ORG 0
@@ -51,20 +53,64 @@ OUT DDRA, R16
 
 ; SOLUTION
 
-IN R16, PINB	; R16-> DATA PINB
-IN R17, PINC	; R17-> DATA PINC
+LOOP:
 
-CP R16, R17
-BREQ P_A1
-BRGE P_A0
-SBI PORTA, 2
-HERE: RJMP HERE
+	IN R16, PINB	; R16-> DATA PINB
+	IN R17, PINC	; R17-> DATA PINC
+
+	CP R16, R17
+	BREQ P_A1
+	BRGE P_A0
+	SBI PORTA, 2
+		RJMP LOOP
 
 P_A1: SBI PORTA, 1
-	RJMP HERE
+	RJMP LOOP
 
 P_A0: SBI PORTA, 0
-	RJMP HERE
+	RJMP LOOP
 
 		3.18
-	a)
+a)
+
+.ORG 0
+
+;CONFIG PD1 AND PD0 INPUT
+
+CLR R16
+OUT DDRD, R16
+LDI R16,  $3
+OUT PORTD, R16
+
+; SOLUTION
+LOOP:
+	IN R16, PIND
+	CPI R16, 0
+	BRNE SUM_
+	CPI R16, 1
+	BRNE SUB_
+	CPI R16, 2
+	BRNE AND_
+
+	ADD R21, R20
+	MOV R22, R21
+	RJMP LOOP
+
+SUM_: ADD R21, R20
+	MOV R22, R21
+	RJMP LOOP
+SUB_: ADD R21, R20
+	MOV R22, R21
+	RJMP LOOP
+AND_: ADD R21, R20
+	MOV R22, R21
+	RJMP LOOP
+
+3.21 a. Viết chương trình con BCDTOASCII đổi 1 ký số BCD trong thanh ghi R20 thành biểu
+diễn ASCII tương ứng và cất vào trong ô nhớ được chỉ bởi thanh ghi X. Nếu giá trị trong R20
+không phải BCD thì cho bit T = 1. Mã ASCII của số 0, 1, ..,9 là 30H, 31H, .., 39H.
+b. Từ đó hãy phát triển thành chương trình con đổi 2 ký số BCD trong thanh ghi R20 thành
+biểu diễn ASCII của chúng, kết quả được cất vào 2 ô nhớ có địa chỉ liên tiếp với địa chỉ đầu chứa
+trong thanh ghi X (mã ASCII của ký số BCD có trọng số cao sẽ được cất ở địa chỉ thấp).
+A)
+

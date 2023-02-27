@@ -113,4 +113,19 @@ b. Từ đó hãy phát triển thành chương trình con đổi 2 ký số BCD
 biểu diễn ASCII của chúng, kết quả được cất vào 2 ô nhớ có địa chỉ liên tiếp với địa chỉ đầu chứa
 trong thanh ghi X (mã ASCII của ký số BCD có trọng số cao sẽ được cất ở địa chỉ thấp).
 A)
+.ORG 0
+	LDI XL, 0
+	LDI XH, 1
+	
+	LDI R20, 9 ;SELECT BCD INPUT
+	CPI R20, 10
+	BRCC CONT
+	ADD R20, $30
+	ST X, R20
+	RJMP HERE
+HERE: 
+CONT: 
+	SET ;BIT T = 1
+	RJMP HERE
+B)
 

@@ -1,0 +1,29 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega324P"</DEVICE>
+ <WORKING_DIR>D:\AVR\Test\Test\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>D:\AVR\Test\Test\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324Pdef.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>D:\AVR\Test\Test\Debug\Test.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>Test.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>Test.map</FILE>
+  <FILE>Test.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <P_A1><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>34</LINE></P_A1>
+  <P_A0><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>37</LINE></P_A0>
+  <HERE><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>32</LINE></HERE>
+ </LABELS>
+</ASSEMBLER_INFO>

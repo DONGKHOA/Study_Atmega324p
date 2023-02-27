@@ -236,3 +236,124 @@ SET_T: SET
 	CLR R16
 	RJMP END
 B)
+.ORG 0
+
+	LDI YL, 0
+	LDI YH, 1
+
+	LD R16, Y ;TRỌNG SỐ CAO
+	CALL ASCIITOBCD
+	MOV R20, R16
+	SWAP R20
+	INC YL
+	LD R16, Y ; TRỌNG SỐ THẤP
+	CALL ASCIITOBCD
+	OR R20, R16
+END: RJMP END
+
+
+ASCIITOBCD:
+	LDI R17, $30
+	SUB R16, R17 ; ASCII TO BCD
+	CPI R16, 0
+	BRCS SET_T
+	CPI R16, 10
+	BRCC SET_T
+	RET
+SET_T: SET
+	CLR R16
+	RET
+3.25 Viết chương trình tìm kiếm trong khối dữ liệu SRAM gồm 16 byte dữ liệu bắt đầu ở địa chỉ
+100H với byte dữ liệu được đọc từ Port C. Chỉ cần tìm 1 giá trị giống nhau.
+a) Khi hoàn tất tìm kiếm thì đặt bit 1 của thanh ghi R24 lên 1.
+b) Nếu tìm thấy dữ liệu thì đặt bit 2 của thanh ghi R24 lên 1.
+c) Nếu không tìm thấy dữ liệu thì xóa bit 2 thanh ghi R24 về 0.
+Chú ý không thay đổi các bit còn lại của R24
+.ORG 0
+
+;ADDR->Y
+;DATA FROM PORTC -> R17
+;DATA FORM (Y) -> R18
+;VARIABLE -> R19
+
+;CONFIG PORTC INPUT
+
+SER R16
+OUT PORTC, R16
+CLR R16
+OUT DDRC, R16
+
+; SOLUTION
+
+	CLR R24
+	LDI YL, 0
+	LDI YH, 1
+	IN R17, PINC
+	LDI R19, 16
+LOOP:
+	LD R18, Y+
+	CP R17, R18
+	BRNE BIT_2
+	DEC R19
+	BRNE LOOP
+
+	ANDI R24, 2
+	BREQ END
+	ORI R24, 1
+END: RJMP END
+
+BIT_2:
+	ORI R24, 2
+	DEC R19
+	BRNE LOOP
+3.26 Viết chương trình xác định xem có bao nhiêu byte có trị bằng 0, giá trị âm, giá trị dương trong
+một khối bộ nhớ SRAM có địa chỉ cuối là 1FFH, số byte của khối dữ liệu là nội dung ô nhớ 200H
+(giả sử khác 0). Kết quả: ô nhớ 240H sẽ chứa số byte có trị bằng 0, ô nhớ 241H sẽ chứa số byte có
+trị âm, ô nhớ 242H sẽ chứa số byte có trị dương.
+.ORG 0
+
+; ADDR -> Z
+; DATA OF ADDR -> R16
+; SIZE -> R17
+; COUNT NEG -> R19
+; COUNT ZERO -> R20
+; COUNT POS -> R21
+
+;SOLUTION
+
+	LDI ZL, 0
+	LDI ZH, 2
+	LD R17, Z
+	CLR R19
+	CLR R20
+	CLR R21
+
+LOOP:
+	LD R16, -Z
+	ORI R16, 0
+	BREQ ZERO
+	BRMI NEGA
+	INC R21
+	DEC R17
+	BRNE LOOP
+
+STORE:
+	STS $240, R20
+	STS $241, R19
+	STS $242, R21
+
+END: RJMP END
+
+ZERO: INC R20
+	DEC R17
+	BRNE LOOP
+	RJMP STORE
+
+NEGA: INC R19
+	DEC R17
+	BRNE LOOP
+	RJMP STORE
+3.27 Viết chương trình tìm phần tử nhỏ nhất trong 1 khối dữ liệu SRAM. Chiều dài của khối dữ
+liệu ở trong ô nhớ 141H (giả sử khác 0) và địa chỉ bắt đầu khối ở trong ô nhớ 142H và 143H (ô
+nhớ địa chỉ thấp chứa byte thấp của địa chỉ bắt đầu) (giả sử vẫn trong vùng nhớ SRAM). Kết quả
+chứa phần tử nhỏ nhất đó trong ô nhớ 140H, giả sử khối dữ liệu chứa các số nhị phân không dấu.

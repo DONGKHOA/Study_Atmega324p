@@ -22,9 +22,10 @@
   <FILE>Test.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <LOOP><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>13</LINE></LOOP>
-  <HEXTOASCII><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>29</LINE></HEXTOASCII>
-  <END><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>27</LINE></END>
-  <CHARACTER><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>35</LINE></CHARACTER>
+  <LOOP><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>19</LINE></LOOP>
+  <ZERO><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>35</LINE></ZERO>
+  <NEGA><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>40</LINE></NEGA>
+  <STORE><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>28</LINE></STORE>
+  <END><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>33</LINE></END>
  </LABELS>
 </ASSEMBLER_INFO>

@@ -120,7 +120,8 @@ A)
 	LDI R20, 9 ;SELECT BCD INPUT
 	CPI R20, 10
 	BRCC CONT
-	ADD R20, $30
+	LDI R21, $30
+	ADD R20, R21
 	ST X, R20
 	RJMP HERE
 HERE: 
@@ -128,4 +129,110 @@ CONT:
 	SET ;BIT T = 1
 	RJMP HERE
 B)
+.ORG 0
+	LDI XL, 0
+	LDI XH, 1
 
+	LDI R20, $AA ; TWO DIGITAL BCD
+	MOV R22, R20
+	ANDI R20, 0B11110000 ;TRỌNG SỐ CAO
+	LDI R21, $30
+	ADD R20, R21
+	ST X, R20
+	INC XL
+	MOV R20, R22
+	ANDI R20, 0B00001111 ; TRỌNG SỐ THẤP
+	SWAP R20
+	LDI R21, $30
+	ADD R20, R21
+	ST X, R20
+HERE: RJMP HERE
+
+CONT: 
+	SET ;BIT T = 1
+	RJMP HERE
+3.22 a. Viết chương trình con HEXTOASCII đổi 1 chữ số HEX trong thanh ghi R20 (chứa ở 4
+bit thấp, còn 4 bit cao bằng 0) thành biểu diễn ASCII của chúng, kết quả được cất vào thanh ghi
+R20.
+b. Dùng chương trình con HEXTOASCII ở câu a viết chương trình liên tục nhận data từ
+Port B và đổi thành mã ASCII tương đương. ASCII của 4 bit thấp xuất ra Port C và ASCII của 4
+bit thấp xuất ra Port D. Chương trình liên tục thực hiện cho tới khi giá tri nhận được là 0 thì dừng
+sau khi xuất ra 2 port
+A)
+.ORG 0
+
+	LDI R20, $1 ; DIGITAL HEX
+	CPI R20, $A
+	BRCC CHARACTER
+	LDI R21, $30
+	ADD R20, R21	;NUMBER
+FINAL: RJMP FINAL
+
+CHARACTER:
+	LDI R21, $37
+	ADD R20, R21
+	RJMP FINAL
+B)
+.ORG 0
+
+; CONFIG PORTB INPUT; PORTC AND PORTD OUTPUT
+SER R16
+OUT DDRC, R16
+OUT DDRD, R16
+OUT PORTB, R16
+CLR R16
+OUT DDRB, R16
+
+;SOLTUTION
+
+LOOP:
+	IN R20, PINB
+	MOV R21, R20
+	ANDI R21, 0B00001111
+	CALL HEXTOASCII
+	OUT PORTC, R21
+	MOV R21, R20
+	ANDI R21, 0B11110000
+	SWAP R21
+	CALL HEXTOASCII
+	OUT PORTD, R21
+	CPI R20, 0
+	BREQ END
+	RJMP LOOP
+END: RJMP END
+
+HEXTOASCII:
+	CPI R21, $A
+	BRCC CHARACTER
+	LDI R22, $30
+	ADD R21, R22	;NUMBER
+	RET
+CHARACTER:
+	LDI R22, $30
+	ADD R21, R22
+	RET
+
+3.23 a. Viết chương trình con ASCIITOBCD đổi biểu diễn ASCII được cất trong ô nhớ được
+chỉ bởi thanh ghi Y thành ký số BCD tương ứng và cất vào trong thanh ghi R20. Nếu giá trị trong
+thanh ghi R20 không phải BCD thì cho bit T = 1.
+b. Từ đó hãy phát triển thành chương trình con đổi 2 ký số dạng ASCII được cất trong ô
+nhớ được chỉ bởi thanh ghi Y (ký số có trọng số cao chứa ở địa chỉ thấp) thành BCD 2 ký số (BCD
+nén) cất trong thanh ghi R20
+A)
+.ORG 0
+
+	LDI YL, 0
+	LDI YH, 1
+
+	LD R16, Y
+	LDI R17, $30
+	SUB R16, R17 ; ASCII TO BCD
+	CPI R16, 0
+	BRCS SET_T
+	CPI R16, 10
+	BRCC SET_T
+END: RJMP END
+SET_T: SET
+	CLR R16
+	RJMP END
+B)

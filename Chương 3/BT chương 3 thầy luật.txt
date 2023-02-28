@@ -357,3 +357,58 @@ NEGA: INC R19
 liệu ở trong ô nhớ 141H (giả sử khác 0) và địa chỉ bắt đầu khối ở trong ô nhớ 142H và 143H (ô
 nhớ địa chỉ thấp chứa byte thấp của địa chỉ bắt đầu) (giả sử vẫn trong vùng nhớ SRAM). Kết quả
 chứa phần tử nhỏ nhất đó trong ô nhớ 140H, giả sử khối dữ liệu chứa các số nhị phân không dấu.
+.ORG 0
+
+;SIZE MEMORY-> R16 (141H)
+;ADDR->Z (142H, 143H)
+;DATA -> R17, R18
+;MIN (140H)
+
+;SOLUTION
+	LDS ZL, $142
+	LDS ZH, $143
+	LDS R16, $141
+	SUBI R16, 1
+LOOP:
+	LD R17, Z+
+	LD R18, Z
+	CP R18, R17
+	BRSH CONT
+	STS $140, R18
+CONT:
+	STS $140, R17
+	DEC R16
+	BRNE LOOP
+END: RJMP END
+3.28 Làm lại câu 3.27 với khối dữ liệu chứa số có dấu và tìm giá trị lớn nhất.
+.ORG 0
+
+;SIZE MEMORY-> R16 (141H)
+;ADDR->Z (142H, 143H)
+;DATA -> R17, R18
+;MIN (140H)
+
+;SOLUTION
+	LDS ZL, $142
+	LDS ZH, $143
+	LDS R16, $141
+	SUBI R16, 1
+LOOP:
+	LD R17, Z+
+	LD R18, Z
+	CP R18, R17
+	BRLT CONT
+	STS $140, R18
+CONT:
+	STS $140, R17
+	DEC R16
+	BRNE LOOP
+END: RJMP END
+3.29 Viết chương trình thực hiện các nhiệm vụ sau:
+a. Xóa 1KB địa chỉ cao SRAM vi điều khiển ATmega324P (từ địa chỉ 0xXXX đến địa chỉ
+cuối).
+b. Điền toàn bộ 1KB địa chỉ cao SRAM vi điều khiển ATmega324P (từ địa chỉ 0xXXX đến
+địa chỉ cuối) giá trị 55H.
+c. Kiểm tra lại toàn bộ giá trị ở mỗi ô nhớ (ở câu b) có bằng 55H không? Nếu đúng thì cho
+bit T = 1, ngược lại bit T = 0.
+

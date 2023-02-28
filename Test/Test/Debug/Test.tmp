@@ -22,10 +22,8 @@
   <FILE>Test.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <LOOP><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>19</LINE></LOOP>
-  <ZERO><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>35</LINE></ZERO>
-  <NEGA><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>40</LINE></NEGA>
-  <STORE><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>28</LINE></STORE>
-  <END><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>33</LINE></END>
+  <LAP><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>9</LINE></LAP>
+  <TT><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>13</LINE></TT>
+  <STr><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>17</LINE></STr>
  </LABELS>
 </ASSEMBLER_INFO>

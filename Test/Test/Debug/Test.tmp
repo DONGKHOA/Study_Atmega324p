@@ -22,8 +22,11 @@
   <FILE>Test.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <LAP><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>9</LINE></LAP>
-  <TT><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>13</LINE></TT>
-  <STr><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>17</LINE></STr>
+  <LP2><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>11</LINE></LP2>
+  <LP1><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>12</LINE></LP1>
+  <LOOP2><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>22</LINE></LOOP2>
+  <L00P1><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>23</LINE></L00P1>
+  <CONT><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>28</LINE></CONT>
+  <END><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>33</LINE></END>
  </LABELS>
 </ASSEMBLER_INFO>

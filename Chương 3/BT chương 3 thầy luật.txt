@@ -490,13 +490,20 @@ GPRs đầu tiên (R0-R15)
 ;ADDR -> Z
 ;DATA -> R16
 ;COUNT -> R17
+;ADDR_S -> Y
 
 ;SOLTUTION
 
 	LDI ZL, 0
 	LDI ZH, 2
 	LDI R17, 16
+	LDI YL, 0
+	LDI YH, 0
 
 LP1:
 	LD R16, Z+
-	MOV
+	ST Y+, R16
+	DEC R17
+	BRNE LP1
+
+END: RJMP END

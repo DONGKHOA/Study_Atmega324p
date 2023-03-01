@@ -482,3 +482,21 @@ CONT:
 	BRNE LP2
 END: RJMP END
 
+3.30 Viết chương trình copy nội dung 16 ô nhớ SRAM có địa chỉ đầu là 200H vào 16 thanh ghi
+GPRs đầu tiên (R0-R15)
+
+.ORG 0
+
+;ADDR -> Z
+;DATA -> R16
+;COUNT -> R17
+
+;SOLTUTION
+
+	LDI ZL, 0
+	LDI ZH, 2
+	LDI R17, 16
+
+LP1:
+	LD R16, Z+
+	MOV

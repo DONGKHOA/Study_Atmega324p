@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  D:\AVR\Test\Test\main.asm Thu Mar 02 21:35:20 2023
+AVRASM ver. 2.2.8  D:\AVR\Test\Test\main.asm Fri Mar 03 00:35:35 2023
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324Pdef.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324Pdef.inc'
@@ -1151,45 +1151,54 @@ AVRASM ver. 2.2.8  D:\AVR\Test\Test\main.asm Thu Mar 02 21:35:20 2023
                                  
                                  ; ***** END OF FILE ******************************************************
                                  
+000000 ef0f                      LDI R16,0xFF
+000001 b904                      OUT DDRB,R16        ;port B
+000002 e010                      LDI R17,0
+000003 2733                      CLR R19
                                  
-                                 ; CONFIG PA0, PA1, PA2 OUTPUT
-                                 	
-000000 e007                      	LDI R16, 7
-000001 b901                      	OUT DDRA, R16
-                                 
-                                 ;SOLUTION
                                  LOOP:
-000002 e004                      	LDI R16, 4
-000003 b902                      	OUT PORTA, R16
-000004 940e 001b                 	CALL DELAY_1S
-000006 e005                      	LDI R16, 5
-000007 b902                      	OUT PORTA, R16
-000008 940e 001b                 	CALL DELAY_1S
-00000a e003                      	LDI R16, 3
-00000b b902                      	OUT PORTA, R16
-00000c 940e 001b                 	CALL DELAY_1S
-00000e e004                      	LDI R16, 4
-00000f b902                      	OUT PORTA, R16
-000010 940e 001b                 	CALL DELAY_1S
-000012 e005                      	LDI R16, 5
-000013 b902                      	OUT PORTA, R16
-000014 940e 001b                 	CALL DELAY_1S
-000016 e001                      	LDI R16, 1
-000017 b902                      	OUT PORTA, R16
-000018 940e 001b                 	CALL DELAY_1S
-00001a cfe7                      	RJMP LOOP
+000004 e4e6                          LDI ZL,LOW(TABLE<<1)
+000005 e0f0                          LDI ZH,HIGH(TABLE<<1)
+000006 0fe1                          ADD ZL,R17
+000007 1ff3                          ADC ZH,R19
+000008 9124                          LPM R18,Z
+000009 b925                          OUT PORTB,R18
+00000a 940e 0012                     CALL DELAY_1S
+00000c 9513                          INC R17
+00000d 301a                          CPI R17,0x0A
+00000e f009                          BREQ RESET
+00000f cff4                          RJMP LOOP
+                                 
+                                 RESET:
+000010 e010                          LDI R17,0
+000011 cff2                          RJMP LOOP
+                                 
                                  
                                  DELAY_1S:
-00001b e044                      	LDI R20, 4
-00001c ef5a                      LP3:	LDI R21, 250
-00001d ef6a                      LP2:	LDI R22, 250
-00001e 0000                      LP1:	NOP
-00001f 956a                      	DEC R22
-000020 f7e9                      	BRNE LP1
-000021 955a                      	DEC R21
-000022 f7d1                      	BRNE LP2
-000023 954a                      	DEC R20
-000024 f7b9                      	BRNE LP3
+000012 e07a                          LDI R23,10
+                                 LP10:
+000013 940e 0018                     CALL DELAY_100MS
+000015 957a                          DEC R23
+000016 f7e1                          BRNE LP10
+000017 9508                          RET
+                                 
+                                 DELAY_100MS:
+000018 e062                          LDI R22,2
+000019 e159                      LP3:    LDI R21,25
+00001a ef4a                      LP2:    LDI R20,250
+00001b 0000                      LP1:    NOP
+00001c 954a                          DEC R20
+00001d f7e9                          BRNE LP1
+00001e 955a                          DEC R21
+00001f f7d1                          BRNE LP2
+000020 956a                          DEC R22
+000021 f7b9                          BRNE LP3
+000022 9508                          RET
+                                 
+000023 063f
+000024 4f5b
+000025 6d66
+000026 077d
 
 
 RESOURCE USE INFORMATION
@@ -1207,39 +1216,39 @@ counted separately from r26..r31 here.
 .dseg memory usage only counts static data declared with .byte
 
 "ATmega324P" register use summary:
-x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
+x  :   0 y  :   0 z  :   1 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  14 r17:   0 r18:   0 r19:   0 r20:   2 
-r21:   2 r22:   2 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
-r29:   0 r30:   0 r31:   0 
-Registers used: 4 out of 35 (11.4%)
+r13:   0 r14:   0 r15:   0 r16:   2 r17:   5 r18:   2 r19:   2 r20:   2 
+r21:   2 r22:   2 r23:   2 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
+r29:   0 r30:   2 r31:   2 
+Registers used: 11 out of 35 (31.4%)
 
 "ATmega324P" instruction use summary:
-.lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
+.lds  :   0 .sts  :   0 adc   :   1 add   :   1 adiw  :   0 and   :   0 
 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
-brcc  :   0 brcs  :   0 break :   0 breq  :   0 brge  :   0 brhc  :   0 
+brcc  :   0 brcs  :   0 break :   0 breq  :   1 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
-brne  :   3 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
-brvs  :   0 bset  :   0 bst   :   0 call  :   6 cbi   :   0 cbr   :   0 
-clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0 
+brne  :   4 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :   2 cbi   :   0 cbr   :   0 
+clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   1 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
-cpi   :   0 cpse  :   0 dec   :   3 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   0 jmp   :   0 
-ld    :   0 ldd   :   0 ldi   :  10 lds   :   0 lpm   :   0 lsl   :   0 
+cpi   :   1 cpse  :   0 dec   :   4 eor   :   0 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   1 jmp   :   0 
+ld    :   0 ldd   :   0 ldi   :   9 lds   :   0 lpm   :   2 lsl   :   0 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   1 or    :   0 ori   :   0 out   :   7 pop   :   0 
-push  :   0 rcall :   0 ret   :   1 reti  :   0 rjmp  :   1 rol   :   0 
+neg   :   0 nop   :   1 or    :   0 ori   :   0 out   :   2 pop   :   0 
+push  :   0 rcall :   0 ret   :   2 reti  :   0 rjmp  :   2 rol   :   0 
 ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   0 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
 sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   0 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 8 out of 113 (7.1%)
+Instructions used: 15 out of 113 (13.3%)
 
 "ATmega324P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x00004c     76      0     76   32768   0.2%
+[.cseg] 0x000000 0x000050     70     10     80   32768   0.2%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 

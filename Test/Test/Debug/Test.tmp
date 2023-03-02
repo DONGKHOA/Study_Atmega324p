@@ -22,10 +22,14 @@
   <FILE>Test.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <LOOP><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>9</LINE></LOOP>
-  <DELAY_1S><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>30</LINE></DELAY_1S>
-  <LP3><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>32</LINE></LP3>
-  <LP2><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>33</LINE></LP2>
-  <LP1><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>34</LINE></LP1>
+  <LOOP><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>7</LINE></LOOP>
+  <TABLE><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>46</LINE></TABLE>
+  <DELAY_1S><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>25</LINE></DELAY_1S>
+  <RESET><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>20</LINE></RESET>
+  <LP10><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>27</LINE></LP10>
+  <DELAY_100MS><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>33</LINE></DELAY_100MS>
+  <LP3><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>35</LINE></LP3>
+  <LP2><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>36</LINE></LP2>
+  <LP1><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>37</LINE></LP1>
  </LABELS>
 </ASSEMBLER_INFO>

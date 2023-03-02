@@ -507,3 +507,137 @@ LP1:
 	BRNE LP1
 
 END: RJMP END
+BT: Đếm led 7 đoạn
+.ORG 0
+
+;PORTB -> OUT
+
+	SER R16
+	OUT DDRB, R16
+	LDI R18, 10
+	LDI R16, 9
+LOOP:
+	CALL SEG_7
+	OUT PORTB, R17
+	CALL DELAY_500MS
+	DEC R16
+	CPI R16, $FF
+	BRNE LOOP
+	LDI R16, 9
+	BREQ LOOP
+	
+
+
+SEG_7:
+	LDI ZL, LOW(DATA_SEG_7<<1)
+	LDI ZH, HIGH(DATA_SEG_7<<1)
+	CLR R17
+	ADD ZL, R16
+	ADC ZH, R17
+	LPM R17, Z
+	RET
+
+DELAY_500MS:
+		LDI R22, 5
+LP2:	LDI R20, 100
+LP1:	LDI R21, 250
+LP0:	NOP
+	DEC R21
+	BRNE LP0
+	DEC R20
+	BRNE LP1
+	DEC R22
+	BRNE LP2
+	RET
+DATA_SEG_7: .DB $3F, $06, $5B, $4F, $66, $6D, $7D, $07, $7F, $6F
+3.31 Viết chương trình copy 16 word của bộ nhớ Flash có địa chỉ đầu là 0100H vào vùng SRAM
+có địa chỉ đầu bằng địa chỉ byte thấp của word đầu tiên của khối word copy.
+.ORG 0X100
+
+MYDATA: .DW 200, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
+; ADDR_FLASH -> Z
+; ADDR_SRAM -> Y
+; VALUE -> R16
+; SIZE -> R17
+
+;SOLUTION
+
+	LDI ZH, HIGH(MYDATA<<1)
+	LDI ZL, LOW(MYDATA<<1)
+	LDI YH, HIGH(MYDATA<<1)
+	LDI YL, LOW(MYDATA<<1)	
+	LDI R17, 32
+LOOP:
+	LPM R16, Z+
+	ST Y+, R16
+	DEC R17
+	BRNE LOOP
+END: RJMP END
+3.32 Cho chương trình con SOBIT_1 có chức năng đếm số bit 1 có trong thanh ghi R20 (in: R20,
+out: R21 chứa kết quả). Viết chương trình đếm trong chuỗi data SRAM gồm 100 byte có địa chỉ
+đầu là $200, có bao nhiêu ô nhớ có tổng số bit 1 là con số chẵn. Kết quả cất vào ô nhớ $1FF
+.ORG 0
+
+; SOLUTION
+
+	LDI R20, 3
+	CALL SO_BIT_1
+
+END: RJMP END
+
+
+SO_BIT_1:
+	LDI R22, 8
+	CLR R21
+LP:	ROR R20
+	BRCC CONT
+	INC R21
+CONT:
+	DEC R22
+	CLC
+	BRNE LP
+	RET
+3.33 Viết chương trình tạo xung như hình vẽ, cho trước chương trình con DL1s có chức năng tạo
+trễ 1 giây
+.ORG 0
+
+; CONFIG PA0, PA1, PA2 OUTPUT
+	
+	LDI R16, 7
+	OUT DDRA, R16
+
+;SOLUTION
+LOOP:
+	LDI R16, 4
+	OUT PORTA, R16
+	CALL DELAY_1S
+	LDI R16, 5
+	OUT PORTA, R16
+	CALL DELAY_1S
+	LDI R16, 3
+	OUT PORTA, R16
+	CALL DELAY_1S
+	LDI R16, 4
+	OUT PORTA, R16
+	CALL DELAY_1S
+	LDI R16, 5
+	OUT PORTA, R16
+	CALL DELAY_1S
+	LDI R16, 1
+	OUT PORTA, R16
+	CALL DELAY_1S
+	RJMP LOOP
+
+DELAY_1S:
+	LDI R20, 4
+LP3:	LDI R21, 250
+LP2:	LDI R22, 250
+LP1:	NOP
+	DEC R22
+	BRNE LP1
+	DEC R21
+	BRNE LP2
+	DEC R20
+	BRNE LP3
+	RET
+

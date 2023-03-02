@@ -22,7 +22,10 @@
   <FILE>Test.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <LP1><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>16</LINE></LP1>
-  <END><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>22</LINE></END>
+  <LOOP><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>9</LINE></LOOP>
+  <DELAY_1S><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>30</LINE></DELAY_1S>
+  <LP3><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>32</LINE></LP3>
+  <LP2><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>33</LINE></LP2>
+  <LP1><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>34</LINE></LP1>
  </LABELS>
 </ASSEMBLER_INFO>

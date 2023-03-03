@@ -22,14 +22,13 @@
   <FILE>Test.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <LOOP><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>7</LINE></LOOP>
-  <TABLE><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>46</LINE></TABLE>
-  <DELAY_1S><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>25</LINE></DELAY_1S>
-  <RESET><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>20</LINE></RESET>
-  <LP10><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>27</LINE></LP10>
-  <DELAY_100MS><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>33</LINE></DELAY_100MS>
-  <LP3><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>35</LINE></LP3>
-  <LP2><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>36</LINE></LP2>
-  <LP1><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>37</LINE></LP1>
+  <LOOP><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>14</LINE></LOOP>
+  <BUTTON_4PIN><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>42</LINE></BUTTON_4PIN>
+  <SW_1><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>25</LINE></SW_1>
+  <SW_2><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>30</LINE></SW_2>
+  <SW_3><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>35</LINE></SW_3>
+  <DEBOUNCING_1><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>44</LINE></DEBOUNCING_1>
+  <RISE><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>51</LINE></RISE>
+  <DEBOUNCING_2><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>53</LINE></DEBOUNCING_2>
  </LABELS>
 </ASSEMBLER_INFO>

@@ -23,17 +23,19 @@
  </OUTPUT_FILES>
  <LABELS>
   <LOOP><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>25</LINE></LOOP>
-  <BUTTON><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>112</LINE></BUTTON>
+  <BUTTON><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>107</LINE></BUTTON>
   <BLINK><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>37</LINE></BLINK>
-  <VOLUME><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>51</LINE></VOLUME>
-  <DELAY_500MS><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>129</LINE></DELAY_500MS>
-  <ON_PORTC><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>87</LINE></ON_PORTC>
-  <SLAVE><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>107</LINE></SLAVE>
-  <DEBOUNCING_1><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>114</LINE></DEBOUNCING_1>
+  <VOLUME><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>48</LINE></VOLUME>
+  <DELAY_500MS><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>130</LINE></DELAY_500MS>
+  <ON_PORTC><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>84</LINE></ON_PORTC>
+  <SLAVE><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>102</LINE></SLAVE>
+  <DEBOUNCING_1><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>109</LINE></DEBOUNCING_1>
+  <RELEASE><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>115</LINE></RELEASE>
+  <END><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>127</LINE></END>
   <RISE><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>120</LINE></RISE>
   <DEBOUNCING_2><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>122</LINE></DEBOUNCING_2>
-  <LP3><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>131</LINE></LP3>
-  <LP2><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>132</LINE></LP2>
-  <LP1><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>133</LINE></LP1>
+  <LP3><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>132</LINE></LP3>
+  <LP2><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>133</LINE></LP2>
+  <LP1><FILE>D:\AVR\Test\Test\main.asm</FILE><LINE>134</LINE></LP1>
  </LABELS>
 </ASSEMBLER_INFO>
